@@ -7,7 +7,7 @@ from math import isclose
 
 class Vector:
     def __init__(self, coordinates: List[float]) -> None:
-        self._coordinates = coordinates
+        self._coordinates = coordinates.copy()
 
     def __getitem__(self, i: int) -> float:
         return self._coordinates[i]
@@ -27,7 +27,7 @@ class Vector:
 def test_vector_index_access() -> None:
     for index in [0, 1, 2, 3]:
         reference = [float(i) for i in range(4)]
-        vector = Vector(reference.copy())
+        vector = Vector(reference)
         assert all(reference[i] == vector[i] for i in range(4))
         vector[index] = 42.0
         assert vector[index] == 42.0
