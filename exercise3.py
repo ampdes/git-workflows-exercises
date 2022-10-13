@@ -29,8 +29,8 @@ class Rectangle:
         tolerance = 1e-6
         ll_px = point.x - self._lower_left.x
         ll_py = point.y - self._lower_left.y
-        return ll_px > 0 - tolerance and ll_px < self._dx + tolerance \
-            and ll_py > 0 - tolerance and ll_py < self._dy + tolerance
+        return _is_in_interval(point.x, self._lower_left.x, self._lower_left.x + self._dx, tolerance) \
+            and _is_in_interval(point.y, self._lower_left.y, self._lower_left.y + self._dy, tolerance)
 
     def _is_idx_on_upper_edge(self, i: int) -> bool:
         return i in [2, 3]
