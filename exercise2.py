@@ -19,6 +19,11 @@ class Point2D:
         self._coordinates = self._coordinates + v
         return self
 
+    def __isub__(self, v: Vector) -> Point2D:
+        """translate this point by a vector"""
+        self._coordinates = self._coordinates - v
+        return self
+
     # Task A: implement __iadd__ for in-place addition with a vector
     # Task B: implement __isub__ for in-place subtraction with a vector
     # When you are done, remove all comments such that nothing clutters your code
