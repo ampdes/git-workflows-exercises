@@ -52,8 +52,7 @@ def test_3d_vector_subtraction() -> None:
     # Task B: add a test for vector subtraction and remove the "assert False"
     #
     # Possible Option:
-    # vec = Vector([1.0, 2.0, 3.0]) - Vector([0.9, 1.9, 2.9])
-    # assert isclose(vec[0], 0.1)
-    # assert isclose(vec[1], 0.1)
-    # assert isclose(vec[2], 0.1)
-    assert False
+    vec = Vector([1.0, 2.0, 3.0]) - Vector([0.9, 1.9, 2.9])
+    assert isclose(vec[0], 0.1)
+    assert isclose(vec[1], 0.1)
+    assert isclose(vec[2], 0.1)
