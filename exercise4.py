@@ -29,12 +29,33 @@ class Raster:
     @property
     def resolution(self) -> Tuple[int, int]:
         """Return the raster resolution as (x_resolution, y_resolution)"""
+        
         return self._resolution
 
     def set_at(self, index: Tuple[int, int], value: float) -> None:
+        """Set the value of a particular cell of the raster.
+
+        Parameters:
+        ----------
+        index : Tuple
+            example is (i,j) for row i and column j with index beginning with 0
+        
+        value: Float
+            the value to set at the given index location in raster
+        
+        """
+        
         self._values[index[0]][index[1]] = value
 
     def set_from(self, function: Callable[[Point2D], float]) -> None:
+        """Fills up the complete raster with a specified function
+        
+        Parameters:
+        ----------
+        function: Callable[[Point2D], float]
+            A function which takes as input a Point2D object and a float as a value
+        """
+        
         for i in range(self._x_resolution()):
             for j in range(self._y_resolution()):
                 idx = (i, j)
@@ -42,6 +63,9 @@ class Raster:
                 self.set_at(idx, function(point))
 
     def show(self) -> None:
+        """Plots the raster
+        """
+
         pcolormesh(self._values)
         show()
         close()
