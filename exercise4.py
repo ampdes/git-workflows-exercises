@@ -17,6 +17,28 @@ from exercise3 import Rectangle
 DataArray = List[List[float]]
 
 class Raster:
+    """"
+    A class used to work with a raster on a rectangular domain
+
+    Attributes
+    ----------
+    frame: Rectangle
+        An object of Rectangle class that defines the domain
+    resolution: Tuple
+        (nx, ny) divides the rectangular domain into a grid of nx x ny cells
+
+    Methods
+    -------
+    set_at(index: Tuple[int, int], value: float)
+        Sets the value of the indicated cell 
+    
+    set_from(function: Callable[[Point2D], float])
+        The function from which to assign the value of the raster at a given point
+    
+    show()
+        Plots the raster
+        
+    """
     def __init__(self, frame: Rectangle, resolution: Tuple[int, int]) -> None:
         self._frame = frame
         self._resolution = resolution
