@@ -1,3 +1,8 @@
+"""
+This module creates a *Raster* on a rectangular domain and fills up the raster with
+a user specified function, which then can be plotted.
+"""
+
 from typing import Tuple, List, Callable
 from math import sin, cos
 from matplotlib.pyplot import pcolormesh, show, close
