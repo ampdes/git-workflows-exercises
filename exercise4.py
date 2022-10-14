@@ -1,3 +1,8 @@
+"""
+This module creates a *Raster* on a rectangular domain and fills up the raster with
+a user specified function, which then can be plotted.
+"""
+
 from typing import Tuple, List, Callable
 from math import sin, cos
 from matplotlib.pyplot import pcolormesh, show, close
@@ -12,6 +17,28 @@ from exercise3 import Rectangle
 DataArray = List[List[float]]
 
 class Raster:
+    """"
+    A class used to work with a raster on a rectangular domain
+
+    Attributes
+    ----------
+    frame: Rectangle
+        An object of Rectangle class that defines the domain
+    resolution: Tuple
+        (nx, ny) divides the rectangular domain into a grid of nx x ny cells
+
+    Methods
+    -------
+    set_at(index: Tuple[int, int], value: float)
+        Sets the value of the indicated cell 
+    
+    set_from(function: Callable[[Point2D], float])
+        The function from which to assign the value of the raster at a given point
+    
+    show()
+        Plots the raster
+        
+    """
     def __init__(self, frame: Rectangle, resolution: Tuple[int, int]) -> None:
         self._frame = frame
         self._resolution = resolution
@@ -24,12 +51,33 @@ class Raster:
     @property
     def resolution(self) -> Tuple[int, int]:
         """Return the raster resolution as (x_resolution, y_resolution)"""
+        
         return self._resolution
 
     def set_at(self, index: Tuple[int, int], value: float) -> None:
+        """Set the value of a particular cell of the raster.
+
+        Parameters:
+        ----------
+        index : Tuple
+            example is (i,j) for row i and column j with index beginning with 0
+        
+        value: Float
+            the value to set at the given index location in raster
+        
+        """
+        
         self._values[index[0]][index[1]] = value
 
     def set_from(self, function: Callable[[Point2D], float]) -> None:
+        """Fills up the complete raster with a specified function
+        
+        Parameters:
+        ----------
+        function: Callable[[Point2D], float]
+            A function which takes as input a Point2D object and a float as a value
+        """
+        
         for i in range(self._x_resolution()):
             for j in range(self._y_resolution()):
                 idx = (i, j)
@@ -37,6 +85,9 @@ class Raster:
                 self.set_at(idx, function(point))
 
     def show(self) -> None:
+        """Plots the raster
+        """
+
         pcolormesh(self._values)
         show()
         close()
